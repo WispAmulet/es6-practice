@@ -4,7 +4,7 @@ const weather = new Promise((resolve) => {
   }, 2000);
 });
 
-const tweets = new Promise((resolve) => {
+const tweets = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve(['I like cake', 'BBQ is good too!']);
   }, 500);
