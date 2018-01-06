@@ -21,6 +21,48 @@
     breed
   };
   console.log(dog);
+
+  // when you have a method definitions inside of an object
+  // plus, don't use an arrow function when you're using a method of an object
+  const model = {
+    create() {
+
+    },
+    open() {
+
+    },
+    close() {
+
+    },
+  };
+  console.log(model);
+
+
+  function invertColor(color) {
+      return '#' + ("000000" + (0xFFFFFF ^ parseInt(color.substring(1),16)).toString(16)).slice(-6);
+  }
+
+  const key = 'pocketColor';
+  const value = '#ffc600';
+
+  const tShirt = {
+    [key]: value,
+    [`${key}Opposite`]: invertColor(value)
+  };
+  console.log(tShirt);
+
+
+  const keys = ['size', 'color', 'weight'];
+  const values = ['medium', 'red', 100];
+
+  const shirt = {
+    // shift方法用于删除数组的第一个元素，并返回该元素。注意，该方法会改变原数组。
+    [keys.shift()]: values.shift(),
+    [keys.shift()]: values.shift(),
+    [keys.shift()]: values.shift()
+  };
+  console.log(shirt);
+
 </script>
 </body>
 </html>
