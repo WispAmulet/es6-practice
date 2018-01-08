@@ -8,6 +8,10 @@
 </head>
 <body>
 <script>
+// The spread operator are three apathetic dots you will often see in front of an array or any iterable.
+// It takes every single item from an iterable.
+// An iterable is anything that you can loop over with the for...of loop
+// and that includes arrays, strings, DOM, nodes, arguments object and maps and sets.
 const featured = ['Deep Dish', 'Pepperoni', 'Hawaiian'];
 const specialty = ['Meatzza', 'Spicy Mama', 'Margherita'];
 
@@ -20,17 +24,11 @@ const specialty = ['Meatzza', 'Spicy Mama', 'Margherita'];
 
 const pizzas = [...featured, 'veg', ...specialty];
 
-// const fridayPizzas = pizzas;
-// const fridayPizzas = [].concat(pizzas);
-const fridayPizzas = [...pizzas];
+// const fridayPizzas = pizzas; // reference of the pizzas array
+// const fridayPizzas = [].concat(pizzas); // copy of the pizzas array
+const fridayPizzas = [...pizzas]; // better
 
 console.log(pizzas);
-
-const deepDish = {
-  pizzaName: 'Deep Dish',
-  size: 'Medium',
-  ingredients: ['Marinara', 'Italian Sausage', 'Dough', 'Cheese']
-};
 </script>
 </body>
 </html>
