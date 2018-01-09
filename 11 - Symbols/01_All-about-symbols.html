@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>01 - All about symbols</title>
+</head>
+<body>
+<script>
+  // The existing six primitive types in Javascript: Number, String, Object, Boolean, null and undefined.
+  // Now we have a seventh one, which is a symbol.
+
+  // Symbols are unique identifiers. They pretty much help us avoid having naming collisions.
+  // Anytime that you want to create a property in a unique way, that's when you should reach for a symbol.
+
+  const wes = Symbol('Wes'); // The 'Wes' here is not a value, this is what is called a descriptor.
+                             // A symbol itself is just a unique identifier, it may looks like oh3toj3jktnqwro1f08214k1jhra8f08...
+                             // We have no idea what the actual thing is, so we descrbe it as Wes here.
+  console.log(wes); // Symbol(Wes)
+
+  const person = Symbol('Wes'); // create the second symbol with Wes again
+  console.log(person); // Symbol(Wes)
+  // 1. Symbols are absolutely unique.
+  // So the result is false.
+  console.log(person === wes); // false
+
+  // 2. Use symbols to avoid naming collision.
+  const classRoom = {
+    'Mark': { grade: 50, gender: 'Male' },
+    'Olivia': { grade: 80, gender: 'Female' },
+    'Olivia': { grade: 80, gender: 'Female' } // naming collision
+  };
+  console.log(classRoom); // { Mark: {...}, Olivia: {...} }
+
+  const classRoomSymbol = {
+    [Symbol('Mark')]: { grade: 50, gender: 'Male' },
+    [Symbol('Olivia')]: { grade: 80, gender: 'Female' },
+    [Symbol('Olivia')]: { grade: 80, gender: 'Female' }
+  };
+  console.log(classRoomSymbol); // { Symbol(Mark): {...}, Symbol(Olivia): {...}, Symbol(Olivia): {...} }
+
+  // 3. Symbols are not enumerable, which means we cannot loop over them.
+  for (const person in classRoomSymbol) {
+    console.log(person); // undefined
+  }
+  // if you do want to get access to all of your symbols
+  const syms = Object.getOwnPropertySymbols(classRoomSymbol);
+  console.log(syms); // [ Symbol(Mark), Symbol(Olivia), Symbol(Olivia) ]
+  const data = syms.map(sym => classRoomSymbol[sym]);
+  console.log(data);
+</script>
+</body>
+</html>
