@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>04 - Working With Multiple Promises</title>
+</head>
+<body>
+<script>
+  /* const weather = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ temp: 29, conditions: 'Sunny with Clouds'});
+    }, 2000);
+  });
+
+  const tweets = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(['I like cake', 'BBQ is good too!']);
+    }, 500);
+  });
+
+  Promise
+    // The slowest one will decide how long these things should actually take
+    // and here is 2 seconds
+    .all([weather, tweets])
+    .then(res => {
+      const [weatherInfo, tweetInfo] = res;
+      console.log(weatherInfo, tweetInfo);
+    }); */
+
+  const key = `ea49dee30ad80b5f52d37bd4a3d4be51`;
+  const london = `https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=${key}`;
+  const paris = `https://api.openweathermap.org/data/2.5/weather?q=Paris,fr&APPID=${key}`;
+
+  const londonPromise = fetch(london);
+  const parisPromise = fetch(paris);
+
+  Promise
+    .all([londonPromise, parisPromise])
+    .then(responses => {
+      return Promise.all(responses.map(res => res.json()));
+    })
+    .then(responses => {
+      console.log(responses)
+    });
+
+</script>
+</body>
+</html>
