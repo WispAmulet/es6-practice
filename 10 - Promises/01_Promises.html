@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>01 - Promises</title>
+</head>
+<body>
+<script>
+  // What is a Promise?
+
+  // Promise is something that will happen between now and the end of time.
+  // Something will happen in the future but probably not immediately.
+
+  // openweathermap API key
+  const key = `ea49dee30ad80b5f52d37bd4a3d4be51`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=${key}`;
+
+  const postsPromise = fetch(url);
+  postsPromise
+    .then(data => data.json())
+    .then(data => { console.log(data) })
+    // catch errors
+    .catch((err) => { console.error(err) });
+
+</script>
+</body>
+</html>
