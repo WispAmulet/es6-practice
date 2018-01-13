@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>01 - Say Hello to Classes</title>
+</head>
+<body>
+<script>
+  // old ways
+  /*
+  function Dog(name, breed) {
+    this.name = name;
+    this.breed = breed;
+  }
+
+  Dog.prototype.bark = function () {
+    console.log(`Bark Bark! My name is ${this.name}.`);
+  };
+
+  Dog.prototype.cuddle = function () {
+    console.log(`I love you owner!`);
+  };
+
+  const snickers = new Dog('Snicker', 'King Charles');
+  const sunny = new Dog('Sunny', 'Golden Doodle');
+
+  snickers.bark();
+  snickers.cuddle();
+  */
+
+  // There're two ways to make a class in ES6.
+  // There is a class declaration and a class expression.
+  /*
+  1. class declaration
+  class Dog {
+  }
+  2. class expression
+  const Dog = class {
+  };
+  */
+
+  class Dog {
+    // Inside of the body of your class, there're a bunch of methods.
+    // The ONLY method that is absolutely required when you're building a class is what is called a constructor.
+    // That is what happens when someone creates a new version.
+
+    // Don't need to use constructor: function() {}
+    // It's the same as the object shorhand for methods
+    constructor(name, breed) {
+      this.name = name;
+      this.breed = breed;
+    }/* , */
+    // Whenever you have a method inside of a class, DO NOT put a comma.
+    bark() {
+      console.log(`Bark Bark! My name is ${this.name}.`);
+    }
+    cuddle() {
+      console.log(`I love you owner!`);
+    }
+    // static method, won't be inherited by instances
+    static info() {
+      console.log('A dog is better than a cat by 10 times.');
+    }
+    // setter and getter
+    // it's not a method, it's a property that is computed when you pull on it
+    get description() {
+      return `${this.name} is a ${this.breed} type of dog.`;
+    }
+    set nickname(value) {
+      this.nick = value.trim();
+    }
+    get nickname() {
+      return this.nick;
+    }
+  }
+
+  const snickers = new Dog('Snicker', 'King Charles');
+  const sunny = new Dog('Sunny', 'Golden Doodle');
+
+</script>
+</body>
+</html>
