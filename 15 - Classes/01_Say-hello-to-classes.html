@@ -79,6 +79,13 @@
   const snickers = new Dog('Snicker', 'King Charles');
   const sunny = new Dog('Sunny', 'Golden Doodle');
 
+  Dog.info(); // "A dog is better than a cat by 10 times."
+  snickers.info(); // Uncaught TypeError: snickers.info is not a function
+
+  snickers.description; // "Snicker is a King Charles type of dog."
+  snickers.nickname = '  pew     ';
+  snickers.nickname; // 'pew'
+
 </script>
 </body>
 </html>
