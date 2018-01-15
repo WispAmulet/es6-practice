@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>01 - Introducing Generators</title>
+</head>
+<body>
+<script>
+  // Currently with functions in Javascript, when you run a function,
+  // it runs top to bottom and that function is done.
+
+  // However, with a generator function, what we are essentially
+  // going to be making is a function that you can start and stop,
+  // or a function that you can pause for an indefinite amount of time and
+  // a function you can pass additional information to at a later point in time.
+
+  // put an asterisk after the keyword function
+  function* listPeople() {
+    let i = 0;
+    // it will return that one item until the function is then called again
+    yield i;
+    i++;
+    yield i;
+    i++;
+    yield i;
+  }
+
+  // invoke the generator function and store it in a variable
+  const people = listPeople();
+
+  people; // listPeople {<suspended>}
+  people.next(); // { value: 0, done: false }
+  people.next(); // { value: 1, done: false }
+  people.next(); // { value: 2, done: false }
+  people.next(); // { value: undefined, done: true }
+  people; // listPeople {<closed>}
+
+  const inventors = [
+    { first: 'Albert', last: 'Einstein', year: 1879 },
+    { first: 'Isaac', last: 'Newton', year: 1643 },
+    { first: 'Galileo', last: 'Galilei', year: 1564 },
+    { first: 'Marie', last: 'Curie', year: 1867 },
+    { first: 'Johannes', last: 'Kepler', year: 1571 },
+    { first: 'Nicolaus', last: 'Copernicus', year: 1473 },
+    { first: 'Max', last: 'Planck', year: 1858 },
+  ];
+
+  function* loop(arr) {
+    for (const item of arr) {
+      yield item;
+    }
+  }
+
+  const inventorGen = loop(inventors);
+</script>
+</body>
+</html>
