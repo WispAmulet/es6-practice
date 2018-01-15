@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>03 - Extending Arrays with Class</title>
+</head>
+<body>
+<script>
+  // Another neat thing about ES6 is you can extend the built-ins.
+  class MovieCollection extends Array {
+    // ...rest
+    constructor(name, ...items) {
+      // ...spread
+      super(...items);
+      this.name = name;
+    }
+    add(movie) {
+      this.push(movie);
+    }
+    topRated(limit = 10) {
+      return this.sort((a, b) => (a.stars > b.stars ? -1 : 1)).slice(0, limit);
+    }
+  }
+  // So at the end, MovieCollection is something like array but also have properties.
+  // That's because arrays still are objects in Javascript.
+
+  const movies = new MovieCollection('Wes\'s Fav Movies',
+    { name: 'Bee Movie', stars: 10 },
+    { name: 'Star Wars Trek', stars: 1 },
+    { name: 'Virgin Suicides', stars: 7 },
+    { name: 'King of the Road', stars: 8 }
+  );
+  // console.log(movies);
+  movies.add({ name: 'Titanic', stars: 7 });
+  // console.log(movies);
+  // console.log(movies[movies.length - 1]); // { name: 'Titanic', stars: 7 }
+
+  console.table(movies.topRated(3));
+
+  for (const movie in movies) {
+    // console.log(movie);
+    // 0
+    // 1
+    // 2
+    // 3
+    // 4
+    // name
+  }
+  for (const movie of movies) {
+    // console.log(movie);
+    // { name: 'Bee Movie', stars: 10 },
+    // { name: 'Star Wars Trek', stars: 1 },
+    // { name: 'Virgin Suicides', stars: 7 },
+    // { name: 'King of the Road', stars: 8 }
+    // { name: 'Titanic', stars: 7 }
+  }
+
+</script>
+</body>
+</html>
