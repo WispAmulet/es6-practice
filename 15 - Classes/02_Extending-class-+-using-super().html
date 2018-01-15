@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>02 - Extending class + Using super()</title>
+</head>
+<body>
+<script>
+  class Animal {
+    constructor(name) {
+      this.name = name;
+      this.thirst = 100;
+      this.belly = [];
+    }
+    drink() {
+      this.thirst -= 10;
+      return this.thirst;
+    }
+    eat(food) {
+      this.belly.push(food);
+      return this.belly;
+    }
+  }
+
+  // Classes can be extended
+  class Dog extends Animal {
+    constructor(name, breed) {
+      // We need create a Animal before we create a Dog
+      // super() just call the thing that you are extending
+      super(name);
+      this.breed = breed;
+    }
+  }
+
+  const rhino = new Animal('Rhiney');
+  const snickers = new Dog('Snickers', 'King Charles');
+
+</script>
+</body>
+</html>
