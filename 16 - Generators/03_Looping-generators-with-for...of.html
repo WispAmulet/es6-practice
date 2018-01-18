@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>03 - Looping Generators with <for class="of"></for></title>
+</head>
+<body>
+<script>
+  // for...of loop is pretty much works with absolutely everything except for objects.
+  // It actually works on looping through generators as well.
+  function* lyrics() {
+    yield `But don't tell my heart`;
+    yield `My achy breaky heart`;
+    yield `I just don't think he'd understand`;
+    yield `And if you tell my heart`;
+    yield `My achy breaky heart`;
+    yield `He might blow up and kill this man`;
+  }
+
+  const gen = lyrics();
+
+  for (const line of gen) {
+    console.log(line);
+  }
+
+</script>
+</body>
+</html>
